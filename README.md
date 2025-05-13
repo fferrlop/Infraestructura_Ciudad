@@ -39,6 +39,32 @@ Se ha implementado **VPN site-to-site** para mayor seguridad, y **Dual Stack** p
 
 ---
 
+## Resumen de la Configuración OSPF
+
+### Introducción
+
+Se ha implementado **OSPF (Open Shortest Path First)** como protocolo de enrutamiento dinámico para optimizar la conectividad entre las sedes.  
+OSPF permite intercambiar información de rutas de forma eficiente y adaptarse a cambios en la topología de la red.
+
+---
+
+### Funcionamiento en la Red
+
+Todos los routers (`Central1`, `Central2` y `Casa Inés`) participan en un único proceso OSPF (`Process ID 1`), dentro del área backbone (`area 0`).  
+El protocolo está activo para **IPv4** y **IPv6** (OSPFv3), permitiendo redistribuir rutas de ambos sitios.
+
+OSPF establece **relaciones de vecindad** para garantizar la convergencia y la disponibilidad de rutas óptimas.
+
+---
+
+### Ventajas de OSPF en el Proyecto
+
+- Alta escalabilidad para futuras ampliaciones.
+- Convergencia rápida ante cambios.
+- Balanceo automático de carga en enlaces redundantes.
+- Soporte nativo para **IPv6** gracias a **OSPFv3**.
+
+
 ## Restricción de Accesos desde Casa Inés
 
 Desde el Centro de Datos y el Ayuntamiento:
