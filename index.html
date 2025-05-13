@@ -7,124 +7,213 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f0f2f5;
-            color: #333;
+            margin: 20px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
         h1, h2, h3 {
-            color: #004085;
+            color: #333;
         }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
+        hr {
+            margin: 30px 0;
+            border: 0;
+            height: 1px;
+            background: #ccc;
         }
         img {
             max-width: 100%;
             height: auto;
             display: block;
-            margin: 20px 0;
-            border: 1px solid #ddd;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            border-radius: 8px;
         }
-        hr {
-            border: 0;
-            height: 1px;
-            background: #ccc;
-            margin: 40px 0;
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
         }
         ul {
-            margin: 10px 0 10px 40px;
+            margin-left: 20px;
         }
     </style>
 </head>
 <body>
+
 <h1>Infraestructura_Ciudad</h1>
-<p>Enlace al repositorio: <a href="https://github.com/fferrlop/Infraestructura_Ciudad.git">https://github.com/fferrlop/Infraestructura_Ciudad.git</a></p>
-<p>Enlace a la página: <a href="https://fferrlop.github.io/Infraestructura_Ciudad/">https://fferrlop.github.io/Infraestructura_Ciudad/</a></p>
+
+<p>Enlace al repositorio: <a href="https://github.com/fferrlop/Infraestructura_Ciudad.git" target="_blank">https://github.com/fferrlop/Infraestructura_Ciudad.git</a></p>
+<p>Enlace a la página: <a href="https://fferrlop.github.io/Infraestructura_Ciudad/" target="_blank">https://fferrlop.github.io/Infraestructura_Ciudad/</a></p>
+
 <img src="https://github.com/user-attachments/assets/97087448-d739-4d52-9be9-c90b23118931" alt="Estructura">
 
-<h2>Explicación Breve del Proyecto</h2>
+<h1>Explicación Breve del Proyecto</h1>
 
-<h3>Infraestructura General</h3>
-<p>La infraestructura de este proyecto ha sido diseñada para ser lo más segura posible dentro de las limitaciones de <strong>Cisco Packet Tracer</strong>.<br>La estructura principal comprende tres edificios:</p>
+<h2>Infraestructura General</h2>
+
+<p>La infraestructura de este proyecto ha sido diseñada para ser lo más segura posible dentro de las limitaciones de <strong>Cisco Packet Tracer</strong>.  
+La estructura principal comprende tres edificios:</p>
+
 <ul>
-    <li>Centro de Datos</li>
-    <li>Ayuntamiento</li>
-    <li>Casa de Inés</li>
+<li>Centro de Datos</li>
+<li>Ayuntamiento</li>
+<li>Casa de Inés</li>
 </ul>
+
 <p>La conexión entre ellos se establece mediante <strong>cables serial</strong> utilizando <strong>VPNs</strong> para asegurar los paquetes, y un <strong>túnel</strong> para la zona externa (Casa de Inés).</p>
+
 <hr>
 
-<h3>Conectividad IPv4 e IPv6</h3>
+<h2>Conectividad IPv4 e IPv6</h2>
+
 <p>Entre el Centro de Datos y el Ayuntamiento:</p>
-<img src="https://github.com/user-attachments/assets/e49ceeb9-5e6a-4da7-bc32-747055f64fcb" alt="IPv6 comunicación">
+
+<img src="https://github.com/user-attachments/assets/e49ceeb9-5e6a-4da7-bc32-747055f64fcb" alt="IPv6 Comunicación">
+
 <ul>
-    <li>Todos los dispositivos funcionan correctamente con <strong>IPv6</strong>.</li>
-    <li>Además, son capaces de comunicarse a través de <strong>IPv4</strong>.</li>
+<li>Todos los dispositivos funcionan correctamente con <strong>IPv6</strong>.</li>
+<li>Además, son capaces de comunicarse a través de <strong>IPv4</strong>.</li>
 </ul>
-<img src="https://github.com/user-attachments/assets/48141252-165d-4bb8-bdee-fbd2a58cb0c0" alt="IPv4 comunicación">
+
+<img src="https://github.com/user-attachments/assets/48141252-165d-4bb8-bdee-fbd2a58cb0c0" alt="IPv4 Comunicación">
+
 <p>Se ha implementado <strong>VPN site-to-site</strong> para mayor seguridad, y <strong>Dual Stack</strong> para permitir la comunicación con casas particulares.</p>
+
 <hr>
 
-<h3>Resumen de la Configuración OSPF</h3>
-<h4>Introducción</h4>
-<p>Se ha implementado <strong>OSPF (Open Shortest Path First)</strong> como protocolo de enrutamiento dinámico para optimizar la conectividad entre las sedes.</p>
-<ul>
-    <li>Routers en área backbone (area 0).</li>
-    <li>Soporte IPv4 e IPv6 (OSPFv3).</li>
-    <li>Alta escalabilidad, convergencia rápida, balanceo y compatibilidad IPv6.</li>
-</ul>
+<h2>Resumen de la Configuración OSPF</h2>
+
+<h3>Introducción</h3>
+
+<p>Se ha implementado <strong>OSPF (Open Shortest Path First)</strong> como protocolo de enrutamiento dinámico para optimizar la conectividad entre las sedes.  
+OSPF permite intercambiar información de rutas de forma eficiente y adaptarse a cambios en la topología de la red.</p>
+
 <hr>
 
-<h3>Restricción de Accesos desde Casa Inés</h3>
-<ul>
-    <li>Solo se permitirá la comunicación hacia la <strong>Casa de Inés</strong> desde los <strong>servidores web</strong>.</li>
-    <li>No habrá acceso a ordenadores o archivos <strong>FTP</strong>.</li>
-</ul>
-<img src="https://github.com/user-attachments/assets/a1c1a0d3-8296-4406-90a4-26da3036a316" alt="VPN GRE">
+<h3>Funcionamiento en la Red</h3>
+
+<p>Todos los routers (<code>Central1</code>, <code>Central2</code> y <code>Casa Inés</code>) participan en un único proceso OSPF (<code>Process ID 1</code>), dentro del área backbone (<code>area 0</code>).  
+El protocolo está activo para <strong>IPv4</strong> y <strong>IPv6</strong> (OSPFv3), permitiendo redistribuir rutas de ambos sitios.</p>
+
+<p>OSPF establece <strong>relaciones de vecindad</strong> para garantizar la convergencia y la disponibilidad de rutas óptimas.</p>
+
 <hr>
 
-<h3>Implementación de ACLs</h3>
+<h3>Ventajas de OSPF en el Proyecto</h3>
+
 <ul>
-    <li>Se han establecido <strong>ACLs</strong> para impedir el acceso a ordenadores o archivos desde casas particulares.</li>
-    <li>Se permite acceder a los <strong>servidores web</strong> para consultar páginas oficiales.</li>
+<li>Alta escalabilidad para futuras ampliaciones.</li>
+<li>Convergencia rápida ante cambios.</li>
+<li>Balanceo automático de carga en enlaces redundantes.</li>
+<li>Soporte nativo para <strong>IPv6</strong> gracias a <strong>OSPFv3</strong>.</li>
 </ul>
+
 <hr>
 
-<h3>Limitaciones de Cisco Packet Tracer</h3>
+<h2>Restricción de Accesos desde Casa Inés</h2>
+
+<p>Desde el Centro de Datos y el Ayuntamiento:</p>
+
 <ul>
-    <li><strong>DNSSEC</strong> no ha podido implementarse.</li>
-    <li><strong>VPNs sobre IPv6</strong> no han podido ser simuladas.</li>
+<li>Solo se permitirá la comunicación hacia la <strong>Casa de Inés</strong> desde los <strong>servidores web</strong>.</li>
+<li>No habrá acceso a ordenadores o archivos <strong>FTP</strong>.</li>
 </ul>
-<p>Por este motivo, <strong>IPv6</strong> se mantiene en un entorno seguro, sin exponerlo a zonas inseguras.</p>
+
+<img src="https://github.com/user-attachments/assets/a1c1a0d3-8296-4406-90a4-26da3036a316" alt="Restricciones de acceso">
+
+<p>El ping desde la Casa de Inés hacia los edificios deberá hacerse mediante <strong>IPv4</strong>.  
+Además, la conexión entre Casa Inés y Ayuntamiento será a través de una <strong>VPN sobre un túnel GRE</strong>.</p>
+
+<img src="https://github.com/user-attachments/assets/00e8ee05-bdff-46fc-8c3c-ea88fdeefef4" alt="Túnel GRE">
+<img src="https://github.com/user-attachments/assets/1095e5f1-94fa-4924-a080-f52814090e1e" alt="Túnel GRE 2">
+<img src="https://github.com/user-attachments/assets/25b80455-e4f8-4f8d-be24-f35003d092ed" alt="Túnel GRE 3">
+
 <hr>
 
-<h3>Gestión de Archivos: FTP-TFTP</h3>
+<h2>Implementación de ACLs</h2>
+
+<p>Para mejorar la lógica de la ciudad:</p>
+
 <ul>
-    <li>Servidores disponibles en Centro de Datos y Ayuntamiento.</li>
-    <li>Los dispositivos podrán guardar y compartir archivos en estos servidores.</li>
+<li>Se han establecido <strong>ACLs</strong> para impedir el acceso a ordenadores o archivos desde casas particulares.</li>
+<li>Se permite acceder a los <strong>servidores web</strong> para consultar páginas oficiales.</li>
 </ul>
+
+<img src="https://github.com/user-attachments/assets/07903415-f8bb-4c2b-98cb-ffa045ed9be9" alt="ACLs">
+<img src="https://github.com/user-attachments/assets/841288ae-fd49-4675-97ce-7628ca9ea31a" alt="ACLs 2">
+
+<p>Si se hace un ping desde un ordenador particular hacia un dispositivo que no sea el servidor web, será denegado.</p>
+
+<img src="https://github.com/user-attachments/assets/e2169ff9-8fd0-453d-ab5b-063054cae25a" alt="Ping Denegado">
+
 <hr>
 
-<h3>Implementación de Dispositivos IoT</h3>
+<h2>Limitaciones de Cisco Packet Tracer</h2>
+
 <ul>
-    <li>Sensores</li>
-    <li>Cámaras</li>
-    <li>Electrodomésticos</li>
+<li><strong>DNSSEC</strong> no ha podido implementarse.</li>
+<li><strong>VPNs sobre IPv6</strong> no han podido ser simuladas.</li>
 </ul>
-<p>Todo conectado a un <strong>Home Gateway</strong> y controlado mediante una <strong>Tablet con IoT Monitor</strong>.</p>
+
+<p>Por ello, <strong>IPv6</strong> se mantiene en un entorno seguro, sin exposición externa.</p>
+
 <hr>
 
-<h3>Interacción con SBCs</h3>
+<h2>Gestión de Archivos: FTP-TFTP</h2>
+
+<p>En los edificios de Centro de Datos y Ayuntamiento:</p>
+
 <ul>
-    <li>Sensor de Movimiento → apertura automática de garaje.</li>
-    <li>Semáforo inteligente.</li>
-    <li>Alarma de incendios.</li>
-    <li>Control de entrada.</li>
+<li>Hay servidores FTP-TFTP disponibles.</li>
+<li>Los dispositivos pueden guardar y compartir archivos internamente.</li>
 </ul>
+
+<img src="https://github.com/user-attachments/assets/eae5c38f-5789-44f7-bfb6-3a0f9c02b4cf" alt="Servidor FTP">
+<img src="https://github.com/user-attachments/assets/0ba16fc7-f1f8-4a24-8bf6-be6aea0b936a" alt="Servidor FTP 2">
+<img src="https://github.com/user-attachments/assets/04ed2c94-c321-46d4-9490-4b0a17530b8f" alt="Servidor FTP 3">
+<img src="https://github.com/user-attachments/assets/a1aba8a3-d296-4438-9187-ff68210949d6" alt="Servidor FTP 4">
+
+<hr>
+
+<h2>Implementación de Dispositivos IoT</h2>
+
+<p>En la Casa de Inés se implementaron:</p>
+
+<ul>
+<li><strong>Sensores</strong></li>
+<li><strong>Cámaras</strong></li>
+<li><strong>Electrodomésticos</strong></li>
+</ul>
+
+<p>Todo conectado a un <strong>Home Gateway</strong> y controlado mediante una <strong>Tablet</strong> usando <strong>IoT Monitor</strong>.</p>
+
+<img src="https://github.com/user-attachments/assets/b48c670c-9a1b-4232-805c-6a003e83a8e4" alt="IoT Monitor">
+<img src="https://github.com/user-attachments/assets/36fa9d97-c181-4e60-bb61-d764b9817fab" alt="IoT Dispositivos">
+<img src="https://github.com/user-attachments/assets/477edeb9-82ee-422d-8f2d-79feac71e205" alt="IoT Sensores">
+
+<hr>
+
+<h2>Interacción con SBCs</h2>
+
+<p>Algunos dispositivos IoT están conectados a <strong>SBCs</strong> para personalizar sus interacciones:</p>
+
+<ul>
+<li><strong>Sensor de Movimiento</strong> → Apertura automática de la puerta del garaje</li>
+<li><strong>Semáforo inteligente</strong></li>
+<li><strong>Alarma de incendios</strong></li>
+<li><strong>Control de entrada</strong></li>
+</ul>
+
+<img src="https://github.com/user-attachments/assets/42182889-714b-4ca7-a832-940e7ec1c5a0" alt="SBC Sensores">
+<img src="https://github.com/user-attachments/assets/3054f230-0f26-4aeb-9765-fa19354f2f30" alt="Semáforo Inteligente">
+<img src="https://github.com/user-attachments/assets/538756aa-6387-4209-8089-a0e10d9b9ccf" alt="Alarma Incendios">
+<img src="https://github.com/user-attachments/assets/e56c022f-b673-439b-932f-a80728e37615" alt="Control de Entrada">
+
+</body>
+</html>
 
 </body>
 </html>
