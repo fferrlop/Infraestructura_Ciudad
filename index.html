@@ -17,15 +17,25 @@ pre { white-space: pre-wrap; background-color: #fff; padding: 15px; border-radiu
 
 <pre>
 La infraestructura de este proyecto ha sido diseñada para ser lo más segura posible dentro de las limitaciones puestas por cisco packet tracer. La estructura principal trata de 3 edificios, Centro de datos, Ayuntamiento y Casa de Inés, la conexión se establece mediante cables de serial utilizando VPNs en estas para asegurar los paquetes y un túnel para la zona externa que sería la Casa de Inés en este caso.
+</pre>
+ <img src="https://github.com/user-attachments/assets/97087448-d739-4d52-9be9-c90b23118931">
+
+ <pre>
 Desde centro de datos:
+  </pre>
+ 
+ <img src="https://github.com/user-attachments/assets/97087448-d739-4d52-9be9-c90b23118931">
+ 
+ <pre>
+Como se puede ver dispositivos con IPv6 entre centro datos y ayuntamiento funcionan todos correctamente, pero aparte de esto también son capaces de comunicarse a través de IPv4
+ </pre>
 
-como se puede ver dispositivos con IPv6 entre centro datos y ayuntamiento funcionan todos correctamente, pero aparte de esto también son capaces de comunicarse a través de IPv4
-
+<pre>
 Y al hacerse de esta manera este se hará mediante VPN site to site para mayor seguridad. Aparte, el dual stack también está para poder comunicarse con casas particulares. 
 
 En este caso de centro de datos y de ayuntamiento solo habrá comunicación con casa Inés desde los servidores Web para que una persona desde su casa pueda acceder a la página web del edificio pero no a los ordenadores o a los archivos FTP.
 </pre>
-<img src="https://github.com/user-attachments/assets/97087448-d739-4d52-9be9-c90b23118931">
+
 <img src="https://github.com/user-attachments/assets/e49ceeb9-5e6a-4da7-bc32-747055f64fcb">
 <img src="https://github.com/user-attachments/assets/48141252-165d-4bb8-bdee-fbd2a58cb0c0">
 <pre>
