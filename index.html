@@ -1,99 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explicación Breve</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-        }
-        h1, h2, h3 {
-            color: #0055a5;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 20px auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infraestructura Ciudad</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; max-width: 1000px; margin-left: auto; margin-right: auto; background-color: #f8f9fa; color: #212529; }
+h1, h2, h3 { color: #0d6efd; }
+img { max-width: 100%; height: auto; display: block; margin: 20px auto; border-radius: 8px; }
+pre { white-space: pre-wrap; background-color: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd; }
+</style>
 </head>
 <body>
 
-<h1>Explicación breve del proyecto</h1>
+<h1>Infraestructura Ciudad</h1>
 
-<p>La infraestructura de este proyecto ha sido diseñada para ser lo más segura posible dentro de las limitaciones puestas por cisco packet tracer. La estructura principal trata de 3 edificios, Centro de datos, Ayuntamiento y Casa de Inés, la conexión se establece mediante cables de serial utilizando VPNs en estas para asegurar los paquetes y un túnel para la zona externa que sería la Casa de Inés en este caso.</p>
+<pre>
+La infraestructura de este proyecto ha sido diseñada para ser lo más segura posible dentro de las limitaciones puestas por cisco packet tracer. La estructura principal trata de 3 edificios, Centro de datos, Ayuntamiento y Casa de Inés, la conexión se establece mediante cables de serial utilizando VPNs en estas para asegurar los paquetes y un túnel para la zona externa que sería la Casa de Inés en este caso.
+Desde centro de datos:
 
-<img src="https://github.com/user-attachments/assets/97087448-d739-4d52-9be9-c90b23118931" alt="Estructura">
+como se puede ver dispositivos con IPv6 entre centro datos y ayuntamiento funcionan todos correctamente, pero aparte de esto también son capaces de comunicarse a través de IPv4
 
-<p>Desde centro de datos:</p>
+Y al hacerse de esta manera este se hará mediante VPN site to site para mayor seguridad. Aparte, el dual stack también está para poder comunicarse con casas particulares. 
 
-<p>como se puede ver dispositivos con IPv6 entre centro datos y ayuntamiento funcionan todos correctamente, pero aparte de esto también son capaces de comunicarse a través de IPv4</p>
+En este caso de centro de datos y de ayuntamiento solo habrá comunicación con casa Inés desde los servidores Web para que una persona desde su casa pueda acceder a la página web del edificio pero no a los ordenadores o a los archivos FTP.
+</pre>
+<img src="https://github.com/user-attachments/assets/97087448-d739-4d52-9be9-c90b23118931">
+<img src="https://github.com/user-attachments/assets/e49ceeb9-5e6a-4da7-bc32-747055f64fcb">
+<img src="https://github.com/user-attachments/assets/48141252-165d-4bb8-bdee-fbd2a58cb0c0">
+<pre>
+De tal manera que dará una mayor seguridad. Por tanto, si desde casa Inés se hiciera un ping a los edificios de dual stack se debería hacer mediante IPv4. Aparte, al igual que antes entre los dos edificios había VPN site to site, ahora entre casa Inés y ayuntamiento habrá una VPN sobre un túnel GRE.
 
-<img src="https://github.com/user-attachments/assets/e49ceeb9-5e6a-4da7-bc32-747055f64fcb" alt="IPv6 comunicación">
-<img src="https://github.com/user-attachments/assets/48141252-165d-4bb8-bdee-fbd2a58cb0c0" alt="IPv4 comunicación">
 
-<p>Y al hacerse de esta manera este se hará mediante VPN site to site para mayor seguridad. Aparte, el dual stack también está para poder comunicarse con casas particulares.</p>
 
-<p>En este caso de centro de datos y de ayuntamiento solo habrá comunicación con casa Inés desde los servidores Web para que una persona desde su casa pueda acceder a la página web del edificio pero no a los ordenadores o a los archivos FTP.</p>
+No solo esto, sino que para una mayor lógica, se han establecido ACLs en la ciudad para que una persona desde una casa particular no sea capaz de acceder a los ordenadores o archivos de los edificios importantes, sin embargo, sí se permite acceder a los servidores Web para poder consultar la página del ayuntamiento o del centro de datos:
+</pre>
+<img src="https://github.com/user-attachments/assets/a1c1a0d3-8296-4406-90a4-26da3036a316">
+<img src="https://github.com/user-attachments/assets/00e8ee05-bdff-46fc-8c3c-ea88fdeefef4">
+<img src="https://github.com/user-attachments/assets/1095e5f1-94fa-4924-a080-f52814090e1e">
+<img src="https://github.com/user-attachments/assets/25b80455-e4f8-4f8d-be24-f35003d092ed">
+<img src="https://github.com/user-attachments/assets/07903415-f8bb-4c2b-98cb-ffa045ed9be9">
+<img src="https://github.com/user-attachments/assets/841288ae-fd49-4675-97ce-7628ca9ea31a">
+<pre>
 
-<img src="https://github.com/user-attachments/assets/a1c1a0d3-8296-4406-90a4-26da3036a316" alt="VPN site to site">
 
-<p>De tal manera que dará una mayor seguridad. Por tanto, si desde casa Inés se hiciera un ping a los edificios de dual stack se debería hacer mediante IPv4. Aparte, al igual que antes entre los dos edificios había VPN site to site, ahora entre casa Inés y ayuntamiento habrá una VPN sobre un túnel GRE.</p>
+Sin embargo, si se fuera a hacer ping desde su ordenador a algo que no sea el servidor Web:
 
-<img src="https://github.com/user-attachments/assets/00e8ee05-bdff-46fc-8c3c-ea88fdeefef4" alt="Túnel GRE">
-<img src="https://github.com/user-attachments/assets/1095e5f1-94fa-4924-a080-f52814090e1e" alt="Túnel GRE 2">
-<img src="https://github.com/user-attachments/assets/25b80455-e4f8-4f8d-be24-f35003d092ed" alt="Túnel GRE 3">
 
-<p>No solo esto, sino que para una mayor lógica, se han establecido ACLs en la ciudad para que una persona desde una casa particular no sea capaz de acceder a los ordenadores o archivos de los edificios importantes, sin embargo, sí se permite acceder a los servidores Web para poder consultar la página del ayuntamiento o del centro de datos:</p>
+Mostrando con esto mi acercamiento a la seguridad del proyecto usando ACLs, túneles y VPNs Ipsec. 
+Sin embargo, he encontrado limitaciones dentro de cisco packet tracer, por ejemplo, DNSSEC no he encontrado manera de implementarlo en la simulación ni tampoco VPNs con IPv6, por eso he optado a mantener IPv6 en un entorno seguro y que no salga hacia zonas que lo pongan en peligro.
 
-<img src="https://github.com/user-attachments/assets/07903415-f8bb-4c2b-98cb-ffa045ed9be9" alt="ACLs">
-<img src="https://github.com/user-attachments/assets/841288ae-fd49-4675-97ce-7628ca9ea31a" alt="ACLs 2">
+Ahora, otra función activa en mi trabajo es FTP-TFTP. En los edificios como centro de datos y ayuntamiento habrá un servidor al cual podrán acceder para manejar archivos de tal manera que:
 
-<p>Sin embargo, si se fuera a hacer ping desde su ordenador a algo que no sea el servidor Web:</p>
+(Desde un PC de ayuntamiento)
 
-<img src="https://github.com/user-attachments/assets/e2169ff9-8fd0-453d-ab5b-063054cae25a" alt="Ping Denegado">
 
-<p>Mostrando con esto mi acercamiento a la seguridad del proyecto usando ACLs, túneles y VPNs Ipsec. Sin embargo, he encontrado limitaciones dentro de cisco packet tracer, por ejemplo, DNSSEC no he encontrado manera de implementarlo en la simulación ni tampoco VPNs con IPv6, por eso he optado a mantener IPv6 en un entorno seguro y que no salga hacia zonas que lo pongan en peligro.</p>
 
-<p>Ahora, otra función activa en mi trabajo es FTP-TFTP. En los edificios como centro de datos y ayuntamiento habrá un servidor al cual podrán acceder para manejar archivos de tal manera que:</p>
+Permitiendo guardar de esta manera archivos guardados en el servidor para compartir en el edificio.
 
-<img src="https://github.com/user-attachments/assets/eae5c38f-5789-44f7-bfb6-3a0f9c02b4cf" alt="FTP TFTP">
-<img src="https://github.com/user-attachments/assets/0ba16fc7-f1f8-4a24-8bf6-be6aea0b936a" alt="FTP TFTP 2">
-<img src="https://github.com/user-attachments/assets/04ed2c94-c321-46d4-9490-4b0a17530b8f" alt="FTP TFTP 3">
-<img src="https://github.com/user-attachments/assets/a1aba8a3-d296-4438-9187-ff68210949d6" alt="FTP TFTP 4">
+Ahora, aparte de esto, habrá dispositivos IoT como sensores, cámaras, electrodomésticos implementados en mi trabajo, donde más hay sería en la casa particular ya que he puesto cosas que podría haber en una casa cualquiera:
+</pre>
+<img src="https://github.com/user-attachments/assets/eae5c38f-5789-44f7-bfb6-3a0f9c02b4cf">
+<img src="https://github.com/user-attachments/assets/0ba16fc7-f1f8-4a24-8bf6-be6aea0b936a">
+<img src="https://github.com/user-attachments/assets/04ed2c94-c321-46d4-9490-4b0a17530b8f">
+<img src="https://github.com/user-attachments/assets/a1aba8a3-d296-4438-9187-ff68210949d6">
+<img src="https://github.com/user-attachments/assets/b48c670c-9a1b-4232-805c-6a003e83a8e4">
+<img src="https://github.com/user-attachments/assets/36fa9d97-c181-4e60-bb61-d764b9817fab">
+<img src="https://github.com/user-attachments/assets/477edeb9-82ee-422d-8f2d-79feac71e205">
+<pre>
 
-<p>Permitiendo guardar de esta manera archivos guardados en el servidor para compartir en el edificio.</p>
+Mediante un home Gateway he conectado todos los dispositivos y para controlarlos fácilmente he puesto una Tablet que se encargará de controlar todos los dispositivos desde IoT Monitor:
 
-<p>Ahora, aparte de esto, habrá dispositivos IoT como sensores, cámaras, electrodomésticos implementados en mi trabajo, donde más hay sería en la casa particular ya que he puesto cosas que podría haber en una casa cualquiera:</p>
 
-<img src="https://github.com/user-attachments/assets/b48c670c-9a1b-4232-805c-6a003e83a8e4" alt="IoT casa">
-<img src="https://github.com/user-attachments/assets/36fa9d97-c181-4e60-bb61-d764b9817fab" alt="IoT dispositivos">
-<img src="https://github.com/user-attachments/assets/477edeb9-82ee-422d-8f2d-79feac71e205" alt="IoT sensores">
+Para una mayor facilidad para el usuario se hará todo desde un mismo punto como si fuera el controlador de la casa. 
+Pero no todo funcionará desde ahí porque también habrá dispositivos conectados a SBCs con la finalidad de vincularlos y poder editar más fácilmente sus interacciones de tal manera que por ejemplo aquí al mover el ratón por el sensor de movimiento la puerta del garaje se abrirá:
+</pre>
+<img src="https://github.com/user-attachments/assets/42182889-714b-4ca7-a832-940e7ec1c5a0">
+<pre>
 
-<p>Mediante un home Gateway he conectado todos los dispositivos y para controlarlos fácilmente he puesto una Tablet que se encargará de controlar todos los dispositivos desde IoT Monitor:</p>
-
-<p>Para una mayor facilidad para el usuario se hará todo desde un mismo punto como si fuera el controlador de la casa. Pero no todo funcionará desde ahí porque también habrá dispositivos conectados a SBCs con la finalidad de vincularlos y poder editar más fácilmente sus interacciones de tal manera que por ejemplo aquí al mover el ratón por el sensor de movimiento la puerta del garaje se abrirá:</p>
-
-<img src="https://github.com/user-attachments/assets/42182889-714b-4ca7-a832-940e7ec1c5a0" alt="SBC puerta garaje">
-
-<p>No solo esto sino que además gracias al SBC he implementado:</p>
-<ul>
-<li>Semáforo inteligente:</li>
-<li>Alarma de incendios:</li>
-<li>Control de entrada:</li>
-</ul>
-
-<img src="https://github.com/user-attachments/assets/3054f230-0f26-4aeb-9765-fa19354f2f30" alt="Semáforo">
-<img src="https://github.com/user-attachments/assets/538756aa-6387-4209-8089-a0e10d9b9ccf" alt="Alarma incendios">
-<img src="https://github.com/user-attachments/assets/e56c022f-b673-439b-932f-a80728e37615" alt="Control entrada">
+No solo esto sino que además gracias al SBC he implementado:
+- Semáforo inteligente:
+ 
+-Alarma de incendios:
+ 
+-Control de entrada:
+ 
+Permitiendo así una simulación más realista de edificios y de entornos de una ciudad.
+</pre>
+<img src="https://github.com/user-attachments/assets/3054f230-0f26-4aeb-9765-fa19354f2f30">
+<img src="https://github.com/user-attachments/assets/538756aa-6387-4209-8089-a0e10d9b9ccf">
+<img src="https://github.com/user-attachments/assets/e56c022f-b673-439b-932f-a80728e37615">
 
 </body>
 </html>
