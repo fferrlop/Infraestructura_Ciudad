@@ -56,7 +56,7 @@
 
 <h2>Infraestructura General</h2>
 
-<p>La infraestructura de este proyecto ha sido diseñada para ofrecer la mayor seguridad posible dentro de las limitaciones de <strong>Cisco Packet Tracer</strong> utilizando cables serial entre los edificios con VPNs establecidas en estos, en el caso de serial hacia la casa de Inés, se establecerá un tunel al salir fuera de la zona interna.  
+<p>La infraestructura de este proyecto ha sido diseñada para ofrecer la mayor seguridad posible dentro de las limitaciones de <strong>Cisco Packet Tracer</strong>.  
 La estructura principal comprende tres edificios:</p>
 
 <ul>
@@ -82,7 +82,8 @@ La estructura principal comprende tres edificios:</p>
 
 <img src="https://github.com/user-attachments/assets/48141252-165d-4bb8-bdee-fbd2a58cb0c0" alt="IPv4 Comunicación">
 
-<p>Se ha implementado <strong>VPN site-to-site</strong> para reforzar la seguridad y configurado <strong>Dual Stack</strong> para admitir tanto IPv4 como IPv6 en todas las sedes.</p>
+<p>Se ha implementado <strong>VPN site-to-site</strong> para reforzar la seguridad y configurado <strong>Dual Stack</strong> para admitir tanto IPv4 como IPv6 en todas las sedes. 
+Esto se ha hecho porque la casa de Inés trabajará con IPv4 entonces se comunicará con la central y el ayuntamiento mediante IPv4 mientras que estos dos se comunicarán entre ellos con IPv6 de manera interna.</p>
 
 <hr>
 
@@ -118,10 +119,11 @@ La estructura principal comprende tres edificios:</p>
 <li>Se bloquea el acceso a ordenadores internos y servidores <strong>FTP</strong>.</li>
 </ul>
 
+<p>Esto se hizo con la intención de mantener privados los documentos y contenidos de los ordenadores a usuarios externos.</p>    
 <img src="https://github.com/user-attachments/assets/a1c1a0d3-8296-4406-90a4-26da3036a316" alt="Restricciones de acceso">
 
 <p>El tráfico entre Casa Inés y Ayuntamiento pasa por un <strong>túnel GRE + VPN</strong>.</p>
-
+<p>En este caso se usa un tunel para encapsular los contenicos de los paquetes cuando viajen y mantenerlos seguros a ataques externos.</p>
 <img src="https://github.com/user-attachments/assets/00e8ee05-bdff-46fc-8c3c-ea88fdeefef4" alt="Túnel GRE">
 <img src="https://github.com/user-attachments/assets/1095e5f1-94fa-4924-a080-f52814090e1e" alt="Túnel GRE 2">
 <img src="https://github.com/user-attachments/assets/25b80455-e4f8-4f8d-be24-f35003d092ed" alt="Túnel GRE 3">
@@ -130,9 +132,9 @@ La estructura principal comprende tres edificios:</p>
 
 <h2>Implementación de ACLs</h2>
 
-<p>Para fortalecer la seguridad:</p>
+<p>El anterior punto se realizó gracias a la ayuda de los ACL (access control list) para controlar el tráfico libre a gusto del administrador.</p>
 
-<ul>
+<ul>    
 <li>Se crearon <strong>ACLs</strong> para denegar el acceso a ordenadores y archivos.</li>
 <li>Se permite solo la consulta de páginas oficiales alojadas en los servidores web.</li>
 </ul>
@@ -149,11 +151,10 @@ La estructura principal comprende tres edificios:</p>
 <h2>Limitaciones de Cisco Packet Tracer</h2>
 
 <ul>
-<li><strong>DNSSEC</strong> no se pudo implementar en la simulación.</li>
-<li>Las <strong>VPNs sobre IPv6</strong> no son soportadas.</li>
+<li><strong>DNSSEC</strong> no se pudo implementar en la simulación de cisco packet tracer./li>
+<li>Igual que la VPN en IPv6 tampoco es soportada en cisco packet tracer, por eso decidí mantener interna la conexión de IPv6 sin que pueda salir de esos dos edificios y que si sale es por IPv4 la cual sí permite VPN.</li>
 </ul>
 
-<p>Por este motivo, se mantuvo IPv6 en un entorno cerrado y protegido.</p>
 
 <hr>
 
@@ -163,6 +164,7 @@ La estructura principal comprende tres edificios:</p>
 
 <ul>
 <li>Servidores FTP y TFTP para compartir y respaldar documentos internos.</li>
+<li>Los dispositivos de las centrales serán capaces de acceder a los servidores para compartir, guardar o editar archivos de manera eficaz.</li>    
 </ul>
 
 <img src="https://github.com/user-attachments/assets/eae5c38f-5789-44f7-bfb6-3a0f9c02b4cf" alt="Servidor FTP">
@@ -174,15 +176,15 @@ La estructura principal comprende tres edificios:</p>
 
 <h2>Implementación de Dispositivos IoT</h2>
 
-<p>En la Casa de Inés se integraron dispositivos como:</p>
+<p>En la Casa de Inés fue punto donde mayor IoT se establecieron pensando en cosas que podría haber en una casa:</p>
+<p>Todos controlados a través de un <strong>Home Gateway</strong> y la aplicación <strong>IoT Monitor</strong> desde una tablet.</p>
 
-<ul>
-<li><strong>Sensores de movimiento y temperatura</strong></li>
-<li><strong>Cámaras de vigilancia</strong></li>
-<li><strong>Electrodomésticos conectados</strong></li>
+    <ul>
+<li><strong>Sensor de Movimiento</strong>: apertura automática del garaje.</li>
+<li><strong>Electrodomésticos varios como lámparas, cafeteras...</strong></li>
+<li><strong>Control de la temperatura</li>        
 </ul>
 
-<p>Todos controlados a través de un <strong>Home Gateway</strong> y la aplicación <strong>IoT Monitor</strong> desde una tablet.</p>
 
 <img src="https://github.com/user-attachments/assets/b48c670c-9a1b-4232-805c-6a003e83a8e4" alt="IoT Monitor">
 <img src="https://github.com/user-attachments/assets/36fa9d97-c181-4e60-bb61-d764b9817fab" alt="IoT Dispositivos">
@@ -192,13 +194,13 @@ La estructura principal comprende tres edificios:</p>
 
 <h2>Interacción con SBCs</h2>
 
-<p>Se utilizaron <strong>SBCs</strong> para ampliar la funcionalidad:</p>
+<p>Para poder mejorar las funcionalidades de los IoTs se usó <strong>SBCs</strong> para poder vincularlos y programarlos usando js o python para establecer cosas como:</p>
 
 <ul>
-<li><strong>Sensor de Movimiento</strong>: apertura automática del garaje.</li>
 <li><strong>Semáforo inteligente</strong>: mejora de tráfico simulado.</li>
 <li><strong>Alarma de incendios</strong>: seguridad ante emergencias.</li>
 <li><strong>Control de entrada</strong>: autenticación de acceso.</li>
+<li><strong>Cámaras de vigilancia</strong></li>
 </ul>
 
 <img src="https://github.com/user-attachments/assets/42182889-714b-4ca7-a832-940e7ec1c5a0" alt="SBC Sensores">
