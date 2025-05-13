@@ -155,5 +155,6 @@ También se han implementado otras funciones:
 
 Todo esto permite una simulación más realista de edificios y de una ciudad moderna.
 
+
 ---
 
