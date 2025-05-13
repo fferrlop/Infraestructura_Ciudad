@@ -1,105 +1,210 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Infraestructura Ciudad</title>
-<style>
-body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; max-width: 1000px; margin-left: auto; margin-right: auto; background-color: #f8f9fa; color: #212529; }
-h1, h2, h3 { color: #0d6efd; }
-img { max-width: 100%; height: auto; display: block; margin: 20px auto; border-radius: 8px; }
-pre { white-space: pre-wrap; background-color: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infraestructura Ciudad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        hr {
+            margin: 30px 0;
+            border: 0;
+            height: 1px;
+            background: #ccc;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            margin-left: 20px;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Infraestructura Ciudad</h1>
+<h1>Infraestructura_Ciudad</h1>
 
-<pre>
-La infraestructura de este proyecto ha sido diseñada para ser lo más segura posible dentro de las limitaciones puestas por cisco packet tracer. La estructura principal trata de 3 edificios, Centro de datos, Ayuntamiento y Casa de Inés, la conexión se establece mediante cables de serial utilizando VPNs en estas para asegurar los paquetes y un túnel para la zona externa que sería la Casa de Inés en este caso.
-</pre>
- <img src="https://github.com/user-attachments/assets/97087448-d739-4d52-9be9-c90b23118931">
+<p>Enlace al repositorio: <a href="https://github.com/fferrlop/Infraestructura_Ciudad.git" target="_blank">https://github.com/fferrlop/Infraestructura_Ciudad.git</a></p>
+<p>Enlace a la página: <a href="https://fferrlop.github.io/Infraestructura_Ciudad/" target="_blank">https://fferrlop.github.io/Infraestructura_Ciudad/</a></p>
 
- <pre>
-Desde centro de datos:
-  </pre>
- 
- <img src="https://github.com/user-attachments/assets/97087448-d739-4d52-9be9-c90b23118931">
- 
- <pre>
-Como se puede ver dispositivos con IPv6 entre centro datos y ayuntamiento funcionan todos correctamente, pero aparte de esto también son capaces de comunicarse a través de IPv4
- </pre>
+<img src="https://github.com/user-attachments/assets/97087448-d739-4d52-9be9-c90b23118931" alt="Estructura">
 
-<pre>
-Y al hacerse de esta manera este se hará mediante VPN site to site para mayor seguridad. Aparte, el dual stack también está para poder comunicarse con casas particulares. 
+<h1>Explicación Breve del Proyecto</h1>
 
-En este caso de centro de datos y de ayuntamiento solo habrá comunicación con casa Inés desde los servidores Web para que una persona desde su casa pueda acceder a la página web del edificio pero no a los ordenadores o a los archivos FTP.
-</pre>
+<h2>Infraestructura General</h2>
 
-<img src="https://github.com/user-attachments/assets/e49ceeb9-5e6a-4da7-bc32-747055f64fcb">
-<img src="https://github.com/user-attachments/assets/48141252-165d-4bb8-bdee-fbd2a58cb0c0">
-<pre>
-De tal manera que dará una mayor seguridad. Por tanto, si desde casa Inés se hiciera un ping a los edificios de dual stack se debería hacer mediante IPv4. Aparte, al igual que antes entre los dos edificios había VPN site to site, ahora entre casa Inés y ayuntamiento habrá una VPN sobre un túnel GRE.
+<p>La infraestructura de este proyecto ha sido diseñada para ofrecer la mayor seguridad posible dentro de las limitaciones de <strong>Cisco Packet Tracer</strong>.  
+La estructura principal comprende tres edificios:</p>
 
+<ul>
+<li>Centro de Datos</li>
+<li>Ayuntamiento</li>
+<li>Casa de Inés</li>
+</ul>
 
+<p>La conexión se realiza mediante <strong>cables serial</strong> usando <strong>VPNs</strong> para proteger los paquetes y un <strong>túnel GRE</strong> para la Casa de Inés, considerada la zona externa.</p>
 
-No solo esto, sino que para una mayor lógica, se han establecido ACLs en la ciudad para que una persona desde una casa particular no sea capaz de acceder a los ordenadores o archivos de los edificios importantes, sin embargo, sí se permite acceder a los servidores Web para poder consultar la página del ayuntamiento o del centro de datos:
-</pre>
-<img src="https://github.com/user-attachments/assets/a1c1a0d3-8296-4406-90a4-26da3036a316">
-<img src="https://github.com/user-attachments/assets/00e8ee05-bdff-46fc-8c3c-ea88fdeefef4">
-<img src="https://github.com/user-attachments/assets/1095e5f1-94fa-4924-a080-f52814090e1e">
-<img src="https://github.com/user-attachments/assets/25b80455-e4f8-4f8d-be24-f35003d092ed">
-<img src="https://github.com/user-attachments/assets/07903415-f8bb-4c2b-98cb-ffa045ed9be9">
-<img src="https://github.com/user-attachments/assets/841288ae-fd49-4675-97ce-7628ca9ea31a">
-<pre>
+<hr>
 
+<h2>Conectividad IPv4 e IPv6</h2>
 
-Sin embargo, si se fuera a hacer ping desde su ordenador a algo que no sea el servidor Web:
+<p>Entre el Centro de Datos y el Ayuntamiento se garantiza conectividad completa.</p>
 
+<img src="https://github.com/user-attachments/assets/e49ceeb9-5e6a-4da7-bc32-747055f64fcb" alt="IPv6 Comunicación">
 
-Mostrando con esto mi acercamiento a la seguridad del proyecto usando ACLs, túneles y VPNs Ipsec. 
-Sin embargo, he encontrado limitaciones dentro de cisco packet tracer, por ejemplo, DNSSEC no he encontrado manera de implementarlo en la simulación ni tampoco VPNs con IPv6, por eso he optado a mantener IPv6 en un entorno seguro y que no salga hacia zonas que lo pongan en peligro.
+<ul>
+<li>Los dispositivos funcionan perfectamente con <strong>IPv6</strong>.</li>
+<li>Existe compatibilidad completa para la comunicación vía <strong>IPv4</strong>.</li>
+</ul>
 
-Ahora, otra función activa en mi trabajo es FTP-TFTP. En los edificios como centro de datos y ayuntamiento habrá un servidor al cual podrán acceder para manejar archivos de tal manera que:
+<img src="https://github.com/user-attachments/assets/48141252-165d-4bb8-bdee-fbd2a58cb0c0" alt="IPv4 Comunicación">
 
-(Desde un PC de ayuntamiento)
+<p>Se ha implementado <strong>VPN site-to-site</strong> para reforzar la seguridad y configurado <strong>Dual Stack</strong> para admitir tanto IPv4 como IPv6 en todas las sedes.</p>
 
+<hr>
 
+<h2>Resumen de la Configuración OSPF</h2>
 
-Permitiendo guardar de esta manera archivos guardados en el servidor para compartir en el edificio.
+<h3>Introducción</h3>
 
-Ahora, aparte de esto, habrá dispositivos IoT como sensores, cámaras, electrodomésticos implementados en mi trabajo, donde más hay sería en la casa particular ya que he puesto cosas que podría haber en una casa cualquiera:
-</pre>
-<img src="https://github.com/user-attachments/assets/eae5c38f-5789-44f7-bfb6-3a0f9c02b4cf">
-<img src="https://github.com/user-attachments/assets/0ba16fc7-f1f8-4a24-8bf6-be6aea0b936a">
-<img src="https://github.com/user-attachments/assets/04ed2c94-c321-46d4-9490-4b0a17530b8f">
-<img src="https://github.com/user-attachments/assets/a1aba8a3-d296-4438-9187-ff68210949d6">
-<img src="https://github.com/user-attachments/assets/b48c670c-9a1b-4232-805c-6a003e83a8e4">
-<img src="https://github.com/user-attachments/assets/36fa9d97-c181-4e60-bb61-d764b9817fab">
-<img src="https://github.com/user-attachments/assets/477edeb9-82ee-422d-8f2d-79feac71e205">
-<pre>
+<p>Se implementó el protocolo de enrutamiento dinámico <strong>OSPF (Open Shortest Path First)</strong> para garantizar eficiencia y estabilidad.</p>
 
-Mediante un home Gateway he conectado todos los dispositivos y para controlarlos fácilmente he puesto una Tablet que se encargará de controlar todos los dispositivos desde IoT Monitor:
+<h3>Funcionamiento en la Red</h3>
 
+<p>Los routers <code>Central1</code>, <code>Central2</code> y <code>Casa Inés</code> participan en un único proceso OSPF (<code>Process ID 1</code>), en el área backbone (<code>area 0</code>), activo para <strong>IPv4</strong> y <strong>IPv6</strong> (OSPFv3).</p>
 
-Para una mayor facilidad para el usuario se hará todo desde un mismo punto como si fuera el controlador de la casa. 
-Pero no todo funcionará desde ahí porque también habrá dispositivos conectados a SBCs con la finalidad de vincularlos y poder editar más fácilmente sus interacciones de tal manera que por ejemplo aquí al mover el ratón por el sensor de movimiento la puerta del garaje se abrirá:
-</pre>
-<img src="https://github.com/user-attachments/assets/42182889-714b-4ca7-a832-940e7ec1c5a0">
-<pre>
+<p>Esto facilita la rápida convergencia y la disponibilidad de rutas óptimas.</p>
 
-No solo esto sino que además gracias al SBC he implementado:
-- Semáforo inteligente:
- 
--Alarma de incendios:
- 
--Control de entrada:
- 
-Permitiendo así una simulación más realista de edificios y de entornos de una ciudad.
-</pre>
-<img src="https://github.com/user-attachments/assets/3054f230-0f26-4aeb-9765-fa19354f2f30">
-<img src="https://github.com/user-attachments/assets/538756aa-6387-4209-8089-a0e10d9b9ccf">
-<img src="https://github.com/user-attachments/assets/e56c022f-b673-439b-932f-a80728e37615">
+<h3>Ventajas</h3>
+
+<ul>
+<li>Alta escalabilidad para futuras ampliaciones.</li>
+<li>Convergencia casi inmediata.</li>
+<li>Balanceo automático de carga en enlaces múltiples.</li>
+<li>Compatibilidad total con <strong>IPv6</strong> gracias a <strong>OSPFv3</strong>.</li>
+</ul>
+
+<hr>
+
+<h2>Restricción de Accesos desde Casa Inés</h2>
+
+<p>Se limitó la conectividad:</p>
+
+<ul>
+<li>Únicamente se permite el acceso a los <strong>servidores web</strong>.</li>
+<li>Se bloquea el acceso a ordenadores internos y servidores <strong>FTP</strong>.</li>
+</ul>
+
+<img src="https://github.com/user-attachments/assets/a1c1a0d3-8296-4406-90a4-26da3036a316" alt="Restricciones de acceso">
+
+<p>El tráfico entre Casa Inés y Ayuntamiento pasa por un <strong>túnel GRE + VPN</strong>.</p>
+
+<img src="https://github.com/user-attachments/assets/00e8ee05-bdff-46fc-8c3c-ea88fdeefef4" alt="Túnel GRE">
+<img src="https://github.com/user-attachments/assets/1095e5f1-94fa-4924-a080-f52814090e1e" alt="Túnel GRE 2">
+<img src="https://github.com/user-attachments/assets/25b80455-e4f8-4f8d-be24-f35003d092ed" alt="Túnel GRE 3">
+
+<hr>
+
+<h2>Implementación de ACLs</h2>
+
+<p>Para fortalecer la seguridad:</p>
+
+<ul>
+<li>Se crearon <strong>ACLs</strong> para denegar el acceso a ordenadores y archivos.</li>
+<li>Se permite solo la consulta de páginas oficiales alojadas en los servidores web.</li>
+</ul>
+
+<img src="https://github.com/user-attachments/assets/07903415-f8bb-4c2b-98cb-ffa045ed9be9" alt="ACLs">
+<img src="https://github.com/user-attachments/assets/841288ae-fd49-4675-97ce-7628ca9ea31a" alt="ACLs 2">
+
+<p>Cualquier intento de ping fuera de los servidores web será bloqueado.</p>
+
+<img src="https://github.com/user-attachments/assets/e2169ff9-8fd0-453d-ab5b-063054cae25a" alt="Ping Denegado">
+
+<hr>
+
+<h2>Limitaciones de Cisco Packet Tracer</h2>
+
+<ul>
+<li><strong>DNSSEC</strong> no se pudo implementar en la simulación.</li>
+<li>Las <strong>VPNs sobre IPv6</strong> no son soportadas.</li>
+</ul>
+
+<p>Por este motivo, se mantuvo IPv6 en un entorno cerrado y protegido.</p>
+
+<hr>
+
+<h2>Gestión de Archivos: FTP-TFTP</h2>
+
+<p>Los edificios Centro de Datos y Ayuntamiento cuentan con:</p>
+
+<ul>
+<li>Servidores FTP y TFTP para compartir y respaldar documentos internos.</li>
+</ul>
+
+<img src="https://github.com/user-attachments/assets/eae5c38f-5789-44f7-bfb6-3a0f9c02b4cf" alt="Servidor FTP">
+<img src="https://github.com/user-attachments/assets/0ba16fc7-f1f8-4a24-8bf6-be6aea0b936a" alt="Servidor FTP 2">
+<img src="https://github.com/user-attachments/assets/04ed2c94-c321-46d4-9490-4b0a17530b8f" alt="Servidor FTP 3">
+<img src="https://github.com/user-attachments/assets/a1aba8a3-d296-4438-9187-ff68210949d6" alt="Servidor FTP 4">
+
+<hr>
+
+<h2>Implementación de Dispositivos IoT</h2>
+
+<p>En la Casa de Inés se integraron dispositivos como:</p>
+
+<ul>
+<li><strong>Sensores de movimiento y temperatura</strong></li>
+<li><strong>Cámaras de vigilancia</strong></li>
+<li><strong>Electrodomésticos conectados</strong></li>
+</ul>
+
+<p>Todos controlados a través de un <strong>Home Gateway</strong> y la aplicación <strong>IoT Monitor</strong> desde una tablet.</p>
+
+<img src="https://github.com/user-attachments/assets/b48c670c-9a1b-4232-805c-6a003e83a8e4" alt="IoT Monitor">
+<img src="https://github.com/user-attachments/assets/36fa9d97-c181-4e60-bb61-d764b9817fab" alt="IoT Dispositivos">
+<img src="https://github.com/user-attachments/assets/477edeb9-82ee-422d-8f2d-79feac71e205" alt="IoT Sensores">
+
+<hr>
+
+<h2>Interacción con SBCs</h2>
+
+<p>Se utilizaron <strong>SBCs</strong> para ampliar la funcionalidad:</p>
+
+<ul>
+<li><strong>Sensor de Movimiento</strong>: apertura automática del garaje.</li>
+<li><strong>Semáforo inteligente</strong>: mejora de tráfico simulado.</li>
+<li><strong>Alarma de incendios</strong>: seguridad ante emergencias.</li>
+<li><strong>Control de entrada</strong>: autenticación de acceso.</li>
+</ul>
+
+<img src="https://github.com/user-attachments/assets/42182889-714b-4ca7-a832-940e7ec1c5a0" alt="SBC Sensores">
+<img src="https://github.com/user-attachments/assets/3054f230-0f26-4aeb-9765-fa19354f2f30" alt="Semáforo Inteligente">
+<img src="https://github.com/user-attachments/assets/538756aa-6387-4209-8089-a0e10d9b9ccf" alt="Alarma Incendios">
+<img src="https://github.com/user-attachments/assets/e56c022f-b673-439b-932f-a80728e37615" alt="Control de Entrada">
 
 </body>
 </html>
